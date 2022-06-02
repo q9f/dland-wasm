@@ -18,7 +18,10 @@ env:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: Install Dependencies
         run: |
@@ -119,3 +122,33 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: audit
+
+  pack:
+    name: Pack
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Install Dependencies
+        if: startsWith(matrix.os, 'Ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+      - name: Install Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          target: wasm32-unknown-unknown
+          override: true
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v1.3.0
+      - name: Install Wasm Pack
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+      - name: Pack for Web
+        run: wasm-pack build --target web
