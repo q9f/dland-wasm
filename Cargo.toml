@@ -1,0 +1,8 @@
+[package]
+name = "drand-wasm"
+version = "0.1.0"
+authors = ["Afri Schoedon <rust@q9f.cc>"]
+description = "CLI wrapper and Wasm targets for Drand time-lock encryption"
+edition = "2021"
+
+[dependencies]
