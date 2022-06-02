@@ -3,6 +3,12 @@ name = "drand-wasm"
 version = "0.1.0"
 authors = ["Afri Schoedon <rust@q9f.cc>"]
 description = "CLI wrapper and Wasm targets for Drand time-lock encryption"
+repository = "https://github.com/q9f/drand-wasm"
+license = "Apache-2.0"
 edition = "2021"
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
+wasm-bindgen = "0.2"
