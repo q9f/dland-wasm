@@ -38,10 +38,12 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: check
+          args: --all
       - name: Cargo Test
         uses: actions-rs/cargo@v1
         with:
           command: test
+          args: --all
 
   codecov:
     name: Cover
@@ -64,7 +66,7 @@ jobs:
       - name: Run Tarpaulin
         uses: actions-rs/tarpaulin@v0.1
         with:
-          args: '--locked --jobs 4 --timeout 600 --skip-clean -- --test-threads 4'
+          args: '--locked --jobs 4 --timeout 60 --skip-clean -- --test-threads 4'
       - name: Upload CodeCov
         uses: codecov/codecov-action@v2
 
@@ -94,7 +96,7 @@ jobs:
       - name: Run Clippy
         uses: actions-rs/cargo@v1
         with:
-          command: fmt
+          command: clippy
           args: --all-targets -- -D warnings
 
   audit:
