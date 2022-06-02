@@ -7,7 +7,7 @@ extern {
 
 #[wasm_bindgen]
 pub fn announce(binding: &str) {
-    alert(&format!("Loaded drand-wasm target for {}", binding));
+    alert(&format!("Loaded dland-wasm target for {}", binding));
 }
 
 

@@ -1,6 +1,6 @@
-# drand-wasm
+# dland-wasm
 
-CLI wrapper and Wasm targets for Drand time-lock encryption.
+CLI wrapper and Wasm targets for Dland time-lock encryption.
 
 ```shell
 rustup target add wasm32-unknown-unknown --toolchain nightly
